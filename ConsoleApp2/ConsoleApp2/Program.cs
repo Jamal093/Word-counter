@@ -14,24 +14,30 @@ namespace ConsoleApp1
 
             string input;
             string path = @"C:\Users\Jamal\Desktop\Directory";
-            string files = Path.GetFileName(path);
+            //string files = Path.GetFileNameWithoutExtension(path);
 
-            Console.WriteLine("Enter file name:");
+            Console.WriteLine("Enter (.txt) file name listed below:");
 
-            foreach (string s in Directory.GetFiles(path, "*.txt").Select(Path.GetFileName))
+            foreach (string s in Directory.GetFiles(path, "*.txt").Select(Path.GetFileNameWithoutExtension))
             {
 
-                Console.WriteLine(s);
+                Console.Write(s);
+                Console.Write(" ");
             }
+            Console.WriteLine();
             Console.Write(":");
             input = Console.ReadLine();
             //Console.WriteLine(input);
-            string text = System.IO.File.ReadAllText(@"C:\Users\Jamal\Desktop\Directory\" + input);
+            string text = File.ReadAllText(@"C:\Users\Jamal\Desktop\Directory\" + input + ".txt");
 
 
+            //Console.WriteLine(text);
 
-
+            int count = text.Split(' ').Length;
+            Console.WriteLine("There are " + count + " word(s) in " + input + ".txt file.");
             Console.ReadLine();
+
+
         }
     }
 }
